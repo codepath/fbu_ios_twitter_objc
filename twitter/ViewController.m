@@ -7,8 +7,12 @@
 //
 
 #import "ViewController.h"
+#import "BDBOAuth1SessionManager+SFAuthenticationSession.h"
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (strong, nonatomic) BDBOAuth1SessionManager *sessionManager;
 
 @end
 
@@ -16,7 +20,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    NSURL *baseURL = [NSURL URLWithString:@"https://api.twitter.com"];
+    self.sessionManager = [[BDBOAuth1SessionManager alloc] initWithBaseURL:baseURL
+                                                               consumerKey:@"QNPI0H6RYyx6AykIqoaVXpK6f"
+                                                            consumerSecret:@"1dhfqDmM1XteQJc5K3nKQYaQAdjmGQX1lE0oaiPmHDBNxQCnSE"];
+    
+    [self updateStatus];
 }
 
 
@@ -25,5 +35,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (IBAction)login:(id)sender {
+    
+    // Authenticate with Twitter
+    [self.sessionManager loginWithCompletion:^(BOOL success, NSError *error) {
+        NSLog(@"Authentication %d, error: %@", success, error);
+        [self updateStatus];
+    }];
+    
+}
+
+- (void)updateStatus {
+    if ([self.sessionManager isAuthorized]) {
+        self.statusLabel.text = @"Status: Authorized";
+    } else {
+        self.statusLabel.text = @"Status: Not authorized";
+    }
+}
 
 @end
