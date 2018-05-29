@@ -74,7 +74,12 @@
 }
 
 - (IBAction)didTapLogout:(id)sender {
+    
+    // Logout
     [[APIManager shared] logout];
+    
+    // Notify about logout
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didLogout" object:nil];
 }
 
 

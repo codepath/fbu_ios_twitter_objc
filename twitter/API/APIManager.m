@@ -29,8 +29,19 @@ static NSString * const consumerSecret = @"YOUR_CONSUMER_SECRET";
 }
 
 - (instancetype)init {
+    
     NSURL *baseURL = [NSURL URLWithString:baseURLString];
-    self = [super initWithBaseURL:baseURL consumerKey:consumerKey consumerSecret:consumerSecret];
+    NSString *key = consumerKey;
+    NSString *secret = consumerSecret;
+    // Check for launch arguments override
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"consumer-key"]) {
+        key = [[NSUserDefaults standardUserDefaults] stringForKey:@"consumer-key"];
+    }
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"consumer-secret"]) {
+        secret = [[NSUserDefaults standardUserDefaults] stringForKey:@"consumer-secret"];
+    }
+    
+    self = [super initWithBaseURL:baseURL consumerKey:key consumerSecret:secret];
     if (self) {
         
     }
