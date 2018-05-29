@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -81,21 +82,58 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I love tweeting!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doB-2B-yox">
-                                                    <rect key="frame" x="8" y="8" width="359" height="20.5"/>
+                                                    <rect key="frame" x="79" y="40" width="281" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eUk-IV-Dap">
+                                                    <rect key="frame" x="15" y="11" width="56" height="56"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="56" id="7VY-3n-bUp"/>
+                                                        <constraint firstAttribute="width" constant="56" id="8EL-pZ-gOX"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAt-q9-R50">
+                                                    <rect key="frame" x="79" y="11" width="215" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="N9W-9l-XKQ"/>
+                                                        <constraint firstAttribute="height" constant="21" id="qPi-MD-5Sm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGd-GL-gXw">
+                                                    <rect key="frame" x="302" y="11" width="50" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="6fh-mL-WDO"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="PaL-6P-baP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="doB-2B-yox" secondAttribute="bottom" constant="8" id="GjS-LQ-7oP"/>
-                                                <constraint firstItem="doB-2B-yox" firstAttribute="leading" secondItem="7J3-qX-wt5" secondAttribute="leading" constant="8" id="JDK-5W-fgX"/>
-                                                <constraint firstItem="doB-2B-yox" firstAttribute="top" secondItem="7J3-qX-wt5" secondAttribute="top" constant="8" id="Yqo-LJ-sxp"/>
-                                                <constraint firstAttribute="trailing" secondItem="doB-2B-yox" secondAttribute="trailing" constant="8" id="xLW-Nc-RJk"/>
+                                                <constraint firstItem="qAt-q9-R50" firstAttribute="top" secondItem="7J3-qX-wt5" secondAttribute="topMargin" id="4jh-6Q-3wX"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="doB-2B-yox" secondAttribute="trailing" id="E3y-xh-gsD"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="doB-2B-yox" secondAttribute="bottom" constant="8" id="FU3-aI-9Rc"/>
+                                                <constraint firstItem="eGd-GL-gXw" firstAttribute="leading" secondItem="qAt-q9-R50" secondAttribute="trailing" constant="8" id="JL3-xQ-mGZ"/>
+                                                <constraint firstItem="eUk-IV-Dap" firstAttribute="leading" secondItem="7J3-qX-wt5" secondAttribute="leadingMargin" id="Nqr-kV-XSe"/>
+                                                <constraint firstItem="qAt-q9-R50" firstAttribute="leading" secondItem="eUk-IV-Dap" secondAttribute="trailing" constant="8" id="PXd-Mb-Fuc"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="eGd-GL-gXw" secondAttribute="trailing" constant="8" id="RNh-GH-hrX"/>
+                                                <constraint firstItem="doB-2B-yox" firstAttribute="leading" secondItem="eUk-IV-Dap" secondAttribute="trailing" constant="8" id="d7a-UV-hLR"/>
+                                                <constraint firstItem="eUk-IV-Dap" firstAttribute="top" secondItem="7J3-qX-wt5" secondAttribute="topMargin" id="dql-p9-UrH"/>
+                                                <constraint firstItem="doB-2B-yox" firstAttribute="top" secondItem="qAt-q9-R50" secondAttribute="bottom" constant="8" id="fKN-r4-OjA"/>
+                                                <constraint firstItem="eGd-GL-gXw" firstAttribute="top" secondItem="7J3-qX-wt5" secondAttribute="topMargin" id="leS-a2-kpe"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="nameLabel" destination="qAt-q9-R50" id="V4M-1o-jr1"/>
                                             <outlet property="tweetTextLabel" destination="doB-2B-yox" id="b96-55-17H"/>
+                                            <outlet property="userImageView" destination="eUk-IV-Dap" id="AFJ-zY-Ss1"/>
+                                            <outlet property="usernameLabel" destination="eGd-GL-gXw" id="06Q-Zc-qSe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

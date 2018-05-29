@@ -15,6 +15,7 @@
     if (self) {
         self.name = dictionary[@"name"];
         self.username = dictionary[@"screen_name"];
+        self.imageURL = [NSURL URLWithString:dictionary[@"profile_image_url_https"]];
     }
     return self;
 }

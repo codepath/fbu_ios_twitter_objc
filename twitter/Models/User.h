@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *username;
+@property (strong, nonatomic) NSURL * imageURL;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

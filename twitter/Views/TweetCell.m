@@ -8,11 +8,16 @@
 
 #import "TweetCell.h"
 #import "Tweet.h"
+#import "User.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface TweetCell()
 
 @property (strong, nonatomic) Tweet *tweet;
 @property (weak, nonatomic) IBOutlet UILabel *tweetTextLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 
 @end
 
@@ -32,6 +37,9 @@
 - (void)updateWithTweet:(Tweet *)tweet {
     self.tweet = tweet;
     self.tweetTextLabel.text = tweet.text;
+    self.nameLabel.text = tweet.user.name;
+    self.usernameLabel.text = [NSString stringWithFormat:@"@%@·%@", tweet.user.username, tweet.createdAtString];
+    [self.userImageView setImageWithURL:tweet.user.imageURL];
 }
 
 @end
