@@ -27,11 +27,11 @@
             dictionary = originalTweet;
         }
         
-        self.uid = [dictionary[@"id"] intValue];
+        self.uid = dictionary[@"id_str"];
         self.text = dictionary[@"text"];
-        self.favoriteCount = [dictionary[@"favorite_count"] intValue];
+        self.favoriteCount = [dictionary[@"favorite_count"] unsignedIntegerValue];
         self.favorited = [dictionary[@"favorited"] boolValue];
-        self.retweetCount = [dictionary[@"retweet_count"] intValue];
+        self.retweetCount = [dictionary[@"retweet_count"] unsignedIntegerValue];
         self.retweeted = [dictionary[@"retweeted"] boolValue];
 
         NSDictionary *userDictionary = dictionary[@"user"];
