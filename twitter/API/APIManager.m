@@ -154,4 +154,23 @@ static NSString * const consumerSecret = // Enter your consumer secret here
     }];
 }
 
+- (void)composeTweetWithText:(NSString *)text completion:(void(^)(Tweet *tweet, NSError *error))completion {
+    
+    NSDictionary *parameters = @{@"status": text};
+    [self POST:@"1.1/statuses/update.json"
+    parameters:parameters progress:nil success:^(NSURLSessionDataTask * task, NSDictionary *response) {
+        
+        // Create Tweet from response
+        if (response && task.error == nil) {
+            Tweet *tweet = [[Tweet alloc] initWithDictionary:response];
+            if (completion) { completion(tweet, nil); }
+        } else {
+            if (completion) { completion(nil, task.error); }
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (completion) { completion(nil, error); }
+    }];
+}
+
 @end

@@ -10,8 +10,9 @@
 #import "TweetCell.h"
 #import "Tweet.h"
 #import "APIManager.h"
+#import "ComposeViewController.h"
 
-@interface TimelineViewController () < UITableViewDataSource, UITableViewDelegate>
+@interface TimelineViewController () < UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *tweets;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -58,15 +59,18 @@
     }];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UINavigationController *navComposeController = [segue destinationViewController];
+    ComposeViewController *composeController = (ComposeViewController*)navComposeController.topViewController;
+    composeController.delegate = self;
 }
-*/
+
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
@@ -90,6 +94,14 @@
     
     // Notify about logout
     [[NSNotificationCenter defaultCenter] postNotificationName:@"didLogout" object:nil];
+}
+
+- (void)didPostTweet:(Tweet *)tweet {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (void)didCancelCompose {
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 
