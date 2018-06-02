@@ -7,6 +7,7 @@
 //
 
 #import "APIManager.h"
+#import "Tweet.h"
 
 static NSString * const baseURLString = @"https://api.twitter.com";
 static NSString * const consumerKey = // Enter your consumer key here
@@ -55,8 +56,15 @@ static NSString * const consumerSecret = // Enter your consumer secret here
        // Manually cache the tweets. If the request fails, restore from cache if possible.
        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:tweetDictionaries];
        [[NSUserDefaults standardUserDefaults] setValue:data forKey:@"hometimeline_tweets"];
-
-       completion(tweetDictionaries, nil);
+       
+       // Create Tweets from dictionaries
+       NSMutableArray *tweets = [NSMutableArray array];
+       for (NSDictionary *dictionary in tweetDictionaries) {
+           Tweet *tweet = [[Tweet alloc] initWithDictionary:dictionary];
+           [tweets addObject:tweet];
+       }
+       
+       completion(tweets, nil);
        
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
        
@@ -68,7 +76,7 @@ static NSString * const consumerSecret = // Enter your consumer secret here
            tweetDictionaries = [NSKeyedUnarchiver unarchiveObjectWithData:data];
        }
        
-       completion(tweetDictionaries, error);
+       completion(nil, error);
    }];
 }
 
