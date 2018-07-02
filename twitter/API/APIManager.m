@@ -47,6 +47,10 @@ static NSString * const consumerSecret = // Enter your consumer secret here
     return self;
 }
 
+- (BOOL)isLoggedIn {
+    return self.requestSerializer.accessToken != nil;
+}
+
 - (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion {
     
     [self GET:@"1.1/statuses/home_timeline.json"
